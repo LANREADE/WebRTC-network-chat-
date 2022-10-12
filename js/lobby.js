@@ -1,0 +1,18 @@
+let form = document.getElementById('lobby__form')
+
+let displayName = sessionStorage.getItem('display__name')
+if(displayName){
+	form.name.value = displayName
+}
+
+form.addEventListener('submit',(e)=>{
+	e.preventDefault()
+
+	sessionStorage.setItem('display__name' , e.target.name.value)
+
+	let TokenCode  = e.target.room.value
+	if(!TokenCode){
+		TokenCode = String(Math.floor(Math.random() * 10000))
+	}
+	window.location = `room.html?room=${TokenCode}`
+})
